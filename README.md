@@ -185,25 +185,20 @@ The Tableau dashboard provides:
 
 ### Dashboard Screenshots
 
-#### Main Dashboard
-
+#### 🏠 Main Dashboard
 ![Dashboard](images/dashboard.jpg)
 
-#### Monitoring Station Map
+#### 🗺️ Monitoring Station Map
+![Map View of Stations](images/MapView_of_Stations.jpg)
 
-![Map View](images/MapView_of_Stations.jpg)
+#### 📊 Monthly Anomaly Trends
+![Monthly Anomaly Trends](images/Monthly_Anomaly_Trends.jpg)
 
-#### Monthly Anomaly Trends
+#### 🌫️ PM2.5 Severity Analysis
+![PM2.5 Severity](images/PM25_Severity.jpg)
 
-![Monthly Trends](images/Monthly_Anomaly_Trends.jpg)
-
-#### PM2.5 Severity Analysis
-
-![PM2.5 Severity](images/PM2.5_Severity.jpg)
-
-#### Average PM2.5 by Station
-
-![PM2.5 Station Analysis](images/avg_PM2.5_by_station.jpg)
+#### 📍 Average PM2.5 by Station
+![Average PM2.5 by Station](images/avg_PM25_by_station.jpg)
 
 ---
 
