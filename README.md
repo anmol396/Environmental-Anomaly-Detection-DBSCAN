@@ -28,13 +28,6 @@ Ahmedabad, Gujarat, India
 
 https://sites.google.com/view/qrlandingpage/home
 
-### 👨‍💻 Contributors
-
-| Contributor       | GitHub Profile                                     |
-| ----------------- | -------------------------------------------------- |
-| **Anmol Chawla**  | [@anmol396](https://github.com/anmol396)           |
-| **Kanchi Bhatia** | [@Kanchi-Bhatia](https://github.com/Kanchi-Bhatia) |
-
 </div>
 
 ---
