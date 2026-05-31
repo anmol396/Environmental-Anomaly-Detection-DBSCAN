@@ -1,4 +1,3 @@
-# Environmental-Anomaly-Detection-DBSCAN
 <div align="center">
 
 # 🌍 Environmental Anomaly Detection using DBSCAN
