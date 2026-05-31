@@ -193,8 +193,6 @@ The Tableau dashboard provides:
 #### 📊 Monthly Anomaly Trends
 ![Monthly Anomaly Trends](images/Monthly_Anomaly_Trends.jpg)
 
-#### 🌫️ PM2.5 Severity Analysis
-![PM2.5 Severity](images/PM25_Severity.jpg)
 
 #### 📍 Average PM2.5 by Station
 ![Average PM2.5 by Station](images/avg_PM25_by_station.jpg)
