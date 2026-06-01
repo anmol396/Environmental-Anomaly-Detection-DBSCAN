@@ -34,11 +34,12 @@ https://sites.google.com/view/qrlandingpage/home
 
 # 🌟 Project Overview
 
-Air pollution monitoring generates massive volumes of environmental data that often contain hidden patterns and unusual events. Identifying these anomalies manually is challenging and time-consuming.
+Air pollution has become a significant environmental and public health concern, generating large volumes of monitoring data across locations and time periods. Detecting unusual pollution patterns and environmental anomalies manually can be difficult, time-consuming, and inefficient.
 
-This project applies **DBSCAN (Density-Based Spatial Clustering of Applications with Noise)** to detect environmental anomalies in Ahmedabad's air quality data. By analyzing spatial and temporal pollution patterns, the system identifies abnormal observations such as pollution spikes, unusual AQI values, pollution hotspots, and environmental outliers.
+This project applies **DBSCAN (Density-Based Spatial Clustering of Applications with Noise)** to identify environmental anomalies in air quality observations collected across Ahmedabad, India. By analyzing **spatial and temporal pollution behavior**, the model automatically detects abnormal observations that may indicate **AQI spikes, pollution hotspots, rare environmental events, sensor irregularities, and unusual air quality conditions**.
 
-The project includes data preprocessing, anomaly detection, interactive visualizations, and Tableau dashboards for comprehensive environmental analysis.
+The project combines **data preprocessing, density-based clustering, anomaly detection, interactive visualizations, and Tableau dashboard analytics** to deliver meaningful insights for environmental monitoring and data-driven decision-making.
+
 
 ---
 
