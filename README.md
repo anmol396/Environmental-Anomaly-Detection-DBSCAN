@@ -235,34 +235,51 @@ Open:
 * `Daily_DBSCAN_Anomaly_Analysis.ipynb`
 
 ---
-
 # 📁 Project Structure
 
 ```text
 Environmental-Anomaly-Detection-DBSCAN/
+│
+├── dashboard/
+│   └── Spatio-Temporal Air Quality Anomaly Analysis in Ahmedabad.twbx
 │
 ├── data/
 │   ├── final_data.csv
 │   ├── pollution_data.csv
 │   └── ahd_dbscan.csv
 │
-├── notebooks/
-│   ├── Hourly_DBSCAN_Anomaly_Analysis.ipynb
-│   └── Daily_DBSCAN_Anomaly_Analysis.ipynb
-│
-├── dashboard/
-│   └── Spatio-Temporal Air Quality Anomaly Analysis in Ahmedabad.twbx
-│
 ├── images/
 │   ├── dashboard.jpg
 │   ├── MapView_of_Stations.jpg
 │   ├── Monthly_Anomaly_Trends.jpg
-│   ├── PM2.5_Severity.jpg
-│   └── avg_PM2.5_by_station.jpg
+│   ├── PM25_Severity.jpg
+│   └── avg_PM25_by_station.jpg
 │
+├── notebooks/
+│   ├── Hourly_DBSCAN_Anomaly_Analysis.ipynb
+│   └── Daily_DBSCAN_Anomaly_Analysis.ipynb
+│
+├── scripts/
+│   ├── hourly_dbscan_analysis.py
+│   └── daily_dbscan_analysis.py
+│
+├── .gitignore
 ├── README.md
 ├── requirements.txt
 └── LICENSE
+```
+
+### Folder Description
+
+| Folder       | Purpose                                                   |
+| ------------ | --------------------------------------------------------- |
+| `dashboard/` | Tableau dashboard for environmental anomaly visualization |
+| `data/`      | Raw, processed, and transformed datasets                  |
+| `images/`    | Dashboard screenshots and visual assets                   |
+| `notebooks/` | Jupyter notebooks containing complete analysis workflow   |
+| `scripts/`   | Exported Python implementation for reproducible execution |
+
+```
 ```
 
 ---
