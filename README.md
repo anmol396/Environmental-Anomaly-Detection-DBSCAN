@@ -28,13 +28,6 @@ Ahmedabad, Gujarat, India
 
 https://sites.google.com/view/qrlandingpage/home
 
-### 👨‍💻 Contributors
-
-| Contributor       | GitHub Profile                                     |
-| ----------------- | -------------------------------------------------- |
-| **Anmol Chawla**  | [@anmol396](https://github.com/anmol396)           |
-| **Kanchi Bhatia** | [@Kanchi-Bhatia](https://github.com/Kanchi-Bhatia) |
-
 </div>
 
 ---
@@ -193,8 +186,6 @@ The Tableau dashboard provides:
 #### 📊 Monthly Anomaly Trends
 ![Monthly Anomaly Trends](images/Monthly_Anomaly_Trends.jpg)
 
-#### 🌫️ PM2.5 Severity Analysis
-![PM2.5 Severity](images/PM25_Severity.jpg)
 
 #### 📍 Average PM2.5 by Station
 ![Average PM2.5 by Station](images/avg_PM25_by_station.jpg)
@@ -318,9 +309,12 @@ scipy
 
 # 📜 License
 
+This project is licensed under the **MIT License** — see the [LICENSE](LICENSE) file for details.
+
 This project is developed for educational, research, and environmental analytics purposes.
 
 Feel free to fork, explore, and enhance the project for academic or real-world environmental monitoring applications.
+
 
 ---
 
