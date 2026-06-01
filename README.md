@@ -24,12 +24,7 @@ Ahmedabad, Gujarat, India
 
 2023 – 2025
 
-### 🔗 Project Website
-
-https://sites.google.com/view/qrlandingpage/home
-
 </div>
-
 ---
 
 # 🌟 Project Overview
