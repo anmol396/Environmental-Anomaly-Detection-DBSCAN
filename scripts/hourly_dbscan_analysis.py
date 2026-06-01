@@ -1,33 +1,6 @@
-#!/usr/bin/env python
-# coding: utf-8
 
-# # DBSCAN-Based Detection of Environmental Anomalies in Ahmedabad (2023–2025)
-# 
-# This project applies the DBSCAN clustering algorithm to identify unusual air pollution events (anomalies) using CPCB monitoring data collected from multiple stations in Ahmedabad.
-# 
-# The objective is to separate normal pollution behaviour from irregular spikes that may indicate environmental anomalies.
-
-# ## Objective
-# 
-# The main goal of this project is to detect abnormal pollution events using an unsupervised machine learning technique.
-# 
-# We aim to:
-# - Cluster normal air quality patterns across stations
-# - Detect rare pollution spikes as anomalies
-# - Study monthly and station-wise anomaly trends
-
-# ## Dataset Description
-# 
-# **Source:** CPCB CAAQMS Portal  
-# **Location:** Ahmedabad, Gujarat  
-# **Time Period:** 2023–2025  
-# **Number of Stations:** 9
-# 
-# Pollutants included:
-# - PM2.5, PM10, NO₂, SO₂, CO, O₃
-
-# In[3]:
-
+ # DBSCAN-Based Detection of Environmental Anomalies in Ahmedabad (2023–2025) 
+# Import Libraries
 
 import pandas as pd
 import numpy as np
@@ -40,31 +13,15 @@ from sklearn.metrics import silhouette_score, davies_bouldin_score, calinski_har
 from kneed import KneeLocator
 
 
-# ## Loading the Dataset
-# 
-# The dataset is imported using Pandas.  
-# It contains air quality measurements from CPCB monitoring stations in Ahmedabad for the years 2023–2025.
-
-# In[4]:
-
-
+# Loading the Dataset
 df = pd.read_csv("final_data.csv")
 df.shape
 
-
-# In[5]:
-
-
 df.head()
 
-
-# # Data Preprocessing
-# 
+# Data Preprocessing
 # Real-world pollution datasets often contain missing values and irregular measurements.  
 # Therefore, preprocessing is required before applying DBSCAN.
-
-# In[6]:
-
 
 df = df.rename(columns={"From Date": "Timestamp","To Date": "To_Timestamp"})
 df["Timestamp"] = pd.to_datetime(df["Timestamp"], dayfirst=True, errors="coerce")
@@ -79,20 +36,15 @@ df[pollutants] = (df.groupby("Station_Name", group_keys=False)[pollutants].apply
 df_model = df.dropna(subset=pollutants).reset_index()
 print("Final rows:", df_model.shape[0])
 print("Stations:", df_model["Station_Name"].nunique())
-
-
-# In[7]:
-
-
-# Sample scaling
+# Feature Scaling
+# DBSCAN is distance-based, so pollutant features should be scaled which ensures all pollutants contribute equally to clustering.
+# Without scaling, the pollutants' contribution is very different and misleading
 sample = df_model.sample(n=30000, random_state=42)
 X_sample = sample[pollutants]
+# RobustScaler is used to normalize air pollution features
+
 scaler = RobustScaler()
 X_scaled = scaler.fit_transform(X_sample)
-
-
-# In[8]:
-
 
 # FIND EPS using elbow point detection
 from sklearn.neighbors import NearestNeighbors
@@ -112,9 +64,6 @@ plt.tight_layout()
 plt.show()
 
 
-# In[9]:
-
-
 from kneed import KneeLocator
 k = 7
 nbrs = NearestNeighbors(n_neighbors=k).fit(X_scaled)
@@ -125,8 +74,6 @@ knee = KneeLocator(range(len(k_distances)),k_distances,curve="convex",direction=
 eps = k_distances[knee.knee]
 print(" Selected eps value:", round(eps, 5))
 
-
-# In[10]:
 
 
 # STATION-WISE DBSCAN
@@ -155,9 +102,6 @@ print("Anomaly counts:")
 print(df_model["Is_Anomaly"].value_counts())
 
 
-# In[11]:
-
-
 # ADD STATION COORDINATES
 station_coords = {
     "Chandkheda": (23.1100, 72.5700),
@@ -174,8 +118,6 @@ df_model["Latitude"] = df_model["Station_Name"].map(lambda x: station_coords[x][
 df_model["Longitude"] = df_model["Station_Name"].map(lambda x: station_coords[x][1])
 
 
-# In[12]:
-
 
 # 7. RENAME POLLUTANTS WITH UNITS & SUBSCRIPTS
 df_model = df_model.rename(columns={
@@ -185,9 +127,6 @@ df_model = df_model.rename(columns={
     "SO2": "SO₂ (µg/m³)",
     "CO": "CO (mg/m³)",
     "Ozone": "O₃ (µg/m³)"})
-
-
-# In[13]:
 
 
 # 6. SAVE TABLEAU FILE
@@ -200,8 +139,8 @@ df_model[tableau_cols].to_csv("ahd_dbscan.csv", index=False)
 print("\n✅ Tableau file saved as: ahd_dbscan_.csv")
 
 
-# In[14]:
 
+#Station-wise Anomaly Counts
 
 anomaly_counts = (df_model[df_model["Is_Anomaly"] == True].groupby("Station_Name").size().sort_values())
 plt.figure(figsize=(8,4))
@@ -213,8 +152,8 @@ plt.tight_layout()
 plt.show()
 
 
-# In[15]:
 
+# Heatmap: Monthly PM2.5 Heatmap Across Stations
 
 import seaborn as sns
 pivot = df_model.pivot_table(values="PM2.5 (µg/m³)",index="Station_Name",columns=df_model["Timestamp"].dt.month, aggfunc="mean")
@@ -226,8 +165,6 @@ plt.ylabel("Station")
 plt.tight_layout()
 plt.show()
 
-
-# In[16]:
 
 
 import pandas as pd
@@ -259,7 +196,6 @@ plt.tight_layout()
 plt.show()
 
 
-# In[30]:
 
 
 from sklearn.decomposition import PCA
@@ -279,14 +215,8 @@ plt.tight_layout()
 plt.show()
 
 
-# In[31]:
-
-
 df_model   # final dataframe after DBSCAN
 pollutants = ["PM2.5 (µg/m³)", "PM10 (µg/m³)", "NO₂ (µg/m³)", "SO₂ (µg/m³)", "CO (mg/m³)", "O₃ (µg/m³)"]
-
-
-# In[32]:
 
 
 import seaborn as sns
@@ -301,8 +231,6 @@ plt.legend()
 plt.tight_layout()
 plt.show()
 
-
-# In[33]:
 
 
 from sklearn.preprocessing import RobustScaler
@@ -324,8 +252,6 @@ plt.tight_layout()
 plt.show()
 
 
-# In[18]:
-
 
 sns.pairplot(df_model,
     vars=pollutants,hue="Is_Anomaly",palette={False: "royalblue", True: "red"},plot_kws={"alpha": 0.5, "s": 20},diag_kind="kde")
@@ -334,7 +260,6 @@ plt.suptitle("DBSCAN Pair Plot – Normal vs Anomalous Pollution Events",
 plt.show()
 
 
-# In[19]:
 
 
 df_model["Month_Year"] = df_model["Timestamp"].dt.to_period("M")
@@ -350,7 +275,6 @@ plt.tight_layout()
 plt.show()
 
 
-# In[20]:
 
 
 from sklearn.decomposition import PCA
@@ -365,7 +289,6 @@ plt.tight_layout()
 plt.show()
 
 
-# In[20]:
 
 
 import pandas as pd
@@ -403,8 +326,7 @@ df_map = df_model.groupby(
 threshold = df_map["Anomaly_Flag"].median()   # ~64
 
 df_map["Point_Type"] = df_map["Anomaly_Flag"].apply(
-    lambda x: "Anomaly" if x > threshold else "Normal"
-)
+    lambda x: "Anomaly" if x > threshold else "Normal")
 
 # 🌍 Create Map (UPDATED)
 fig = px.scatter_map(
@@ -425,13 +347,10 @@ fig = px.scatter_map(
 fig.show()
 
 
-# In[19]:
 
 
 print(df_map["Anomaly_Flag"].describe())
 
-
-# In[27]:
 
 
 import pandas as pd
@@ -446,8 +365,7 @@ df_map = df_model.groupby(
 threshold = df_map["Anomaly_Flag"].median()
 
 df_map["Point_Type"] = df_map["Anomaly_Flag"].apply(
-    lambda x: "Anomaly" if x > threshold else "Normal"
-)
+    lambda x: "Anomaly" if x > threshold else "Normal")
 
 # 🌍 Create Map
 fig = px.scatter_map(
@@ -461,21 +379,17 @@ fig = px.scatter_map(
     title="Station-wise Pollution Anomalies in Ahmedabad",
     opacity=0.85,
     color_discrete_map={
-        "Normal": "blue",   # Clean blue
-        "Anomaly": "red"   # Professional red
-    }
-)
+        "Normal": "blue",   
+        "Anomaly": "red"    })
 
-# 🔥 FIX SIZE + CLEAN LOOK
 fig.update_layout(
     map_style="open-street-map",   # light theme
-    height=650,                   # 🔥 increase height
-    width=1100,                   # 🔥 increase width
+    height=650,                   
+    width=1100,                  
     margin=dict(l=10, r=10, t=50, b=10),
-    title_font_size=20
-)
+    title_font_size=20)
 
-# Optional: cleaner markers
+
 fig.update_traces(marker=dict(sizemin=10))
 
 fig.show()
